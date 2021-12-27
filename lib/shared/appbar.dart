@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:servicezz_clone/colors.dart';
 
-String name = 'Bhoomik';
+String name = 'Riya';
 final appbarProperties = AppBar(
   systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: navColor),
   elevation: 0.0,
