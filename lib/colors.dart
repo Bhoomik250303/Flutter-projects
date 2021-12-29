@@ -10,4 +10,5 @@ final order_appbar = Color.fromRGBO(246, 246, 246, 0.1); //rgba(255)
 final orangeColor = Color.fromRGBO(252, 100, 2, 1); //rgba(252,100,2,255)
 final orangeColorBackground = Color.fromRGBO(252, 100, 2, 0.3);
 final transparent = Color.fromRGBO(255, 255, 255, 0);
-final login_orange = Color.fromRGBO(255, 231, 217, 1);//rgba(255,231,217,255)
+final login_orange = Color.fromRGBO(255, 231, 217, 1); //rgba(255,231,217,255)
+final otp_backgroundColor = Color.fromRGBO(157, 157, 157, 0.5);

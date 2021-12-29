@@ -26,7 +26,7 @@ class _DrawerListState extends State<DrawerList> {
           padding: const EdgeInsets.fromLTRB(0.0, 4.0, 0.0, 4.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, 'drawer${index}');
+              Navigator.pushReplacementNamed(context, 'drawer0');
             },
             child: ListTile(
               leading: Text(

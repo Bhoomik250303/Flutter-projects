@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:servicezz_clone/colors.dart';
+import 'package:servicezz_clone/screens/otp_screen.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -22,6 +23,7 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
+  late String phoneNumber;
   bool button_submit = false;
   Text buttonText = Text(
     'Enter phone number',
@@ -100,9 +102,10 @@ class _LoginState extends State<Login> {
                   onChanged: (val) {
                     if (val.length == 10) {
                       setState(() {
+                        phoneNumber = val;
                         button_submit = true;
                         buttonColor = orangeColor;
-                        buttonText = Text(
+                        buttonText = const Text(
                           'Continue',
                           style: TextStyle(
                               color: Colors.white,
@@ -130,7 +133,7 @@ class _LoginState extends State<Login> {
                     labelStyle: myFocusNode.hasFocus
                         ? phoneNumberStyleOnFocus
                         : phoneNumberStyle,
-                    enabledBorder: UnderlineInputBorder(
+                    enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(
                           width: 1,
                           color: Colors.grey,
@@ -153,8 +156,15 @@ class _LoginState extends State<Login> {
               ),
               GestureDetector(
                 onTap: () {
-                  if(button_submit == true){
-                    Navigator.pushNamed(context, '/homepage');
+                  if (button_submit == true) {
+                    print(phoneNumber);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OtpScreen(
+                            phoneNumber: phoneNumber,
+                          ),
+                        ));
                   }
                 },
                 child: AnimatedContainer(

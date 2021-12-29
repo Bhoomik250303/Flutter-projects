@@ -10,7 +10,11 @@ class WalletBalance extends StatelessWidget {
       body: ListTile(
         leading: Icon(Icons.account_balance_wallet_rounded),
         title: Text("Wallet Balance"),
-        subtitle: GestureDetector(onTap: () {}, child: Text("Add Money")),
+        subtitle: GestureDetector(
+            onTap: () {
+              Navigator.pushReplacementNamed(context, '/wallet');
+            },
+            child: Text("Add Money")),
         trailing: Stack(
           children: <Widget>[
             Text("${moneyInWallet}"),

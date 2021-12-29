@@ -22,19 +22,23 @@ class _DrawerPageState extends State<DrawerPage> {
         backgroundColor: navColor,
         elevation: 0.0,
         actions: <Widget>[
-          TextButton.icon(
-              onPressed: () {
-                Navigator.pop(
-                    context,
-                    PageTransition(
-                        child: Home(), type: PageTransitionType.topToBottom));
-              },
-              icon: Icon(
-                Icons.cancel,
-                color: Colors.white,
-                size: 32.0,
-              ),
-              label: Text(" ")),
+          Container(
+            decoration:
+                BoxDecoration(borderRadius: BorderRadius.circular(16.0)),
+            child: TextButton.icon(
+                onPressed: () {
+                  Navigator.pop(
+                      context,
+                      PageTransition(
+                          child: Home(), type: PageTransitionType.topToBottom));
+                },
+                icon: Icon(
+                  Icons.cancel,
+                  color: Colors.white,
+                  size: 32.0,
+                ),
+                label: Text(" ")),
+          ),
         ],
       ),
       body: Container(

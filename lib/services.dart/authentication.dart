@@ -1,9 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:servicezz_clone/models/userData.dart';
 
 class AuthService {
-  String phoneNumber;
-  AuthService({required this.phoneNumber});
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  String? phoneNumber;
+  AuthService({this.phoneNumber});
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  UserData? _firebaseAuthToUserModel(User? user) {
+    return user != null ? UserData(uid: user.uid) : null;
+  }
+
+  Stream<UserData?> get userStream {
+    return _auth.authStateChanges().map(_firebaseAuthToUserModel);
+  }
 
   Future<dynamic> signInWithPhone() async {
     await _auth.verifyPhoneNumber(

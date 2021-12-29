@@ -46,17 +46,22 @@ class _OrderState extends State<Order> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(255, 255, 255, 0),
-                        borderRadius: BorderRadius.circular(12.0)),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 10.0, horizontal: 12.0),
-                      child: Text(
-                        "Active",
-                        style: TextStyle(
-                            color: orangeColor, fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {});
+                    },
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Color.fromRGBO(255, 255, 255, 0),
+                          borderRadius: BorderRadius.circular(12.0)),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10.0, horizontal: 12.0),
+                        child: Text(
+                          "Active",
+                          style: TextStyle(
+                              color: orangeColor, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
                   ),
@@ -76,7 +81,6 @@ class _OrderState extends State<Order> {
                   ),
                   Container(
                     decoration: BoxDecoration(
-                        
                         color: Color.fromRGBO(255, 255, 255, 0),
                         borderRadius: BorderRadius.circular(12.0)),
                     child: Padding(
