@@ -1,6 +1,6 @@
 # servicezz_clone
 
-A new Flutter project.
+This project is the Clone of an Application 'Servizz' (https://play.google.com/store/apps/details?id=com.servizz.diss) which is an application for seeking help and service related to electronic devices.
 
 ## Getting Started
 
