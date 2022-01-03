@@ -68,7 +68,7 @@ class _TabsState extends State<Tabs> {
               ],
             ),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [Body(), Order(), Profile()],
           ),
         ),

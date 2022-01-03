@@ -15,7 +15,7 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     UserData? user = Provider.of<UserData?>(context);
-
+    print("Printing user data from Stream :- ${user?.uid}");
     if (user?.uid == null) {
       return Login();
     } else {

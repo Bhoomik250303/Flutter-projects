@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "480203224952",
-    "project_id": "servizz-69401",
-    "storage_bucket": "servizz-69401.appspot.com"
+    "project_number": "655553525167",
+    "project_id": "servizz-clone",
+    "storage_bucket": "servizz-clone.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:480203224952:android:16fbe0e9a6310abeb2fa8d",
+        "mobilesdk_app_id": "1:655553525167:android:47c44598b70b1711be6b5a",
         "android_client_info": {
           "package_name": "com.example.servicezz_clone"
         }
       },
       "oauth_client": [
         {
-          "client_id": "480203224952-s5ehlk0a765vu7rtqpinqdgj8t7aknuc.apps.googleusercontent.com",
+          "client_id": "655553525167-7qf85p38p34qts0vcuf1kftgqp46rr9g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.servicezz_clone",
+            "certificate_hash": "7ce503ca928c4c48e37578a725b5dc6246ea065d"
+          }
+        },
+        {
+          "client_id": "655553525167-rnjegv9s3m09og314126gh17rfl3vae8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBIVE3ku8vxpcz6QXnpoEhke0O9mXSQZqs"
+          "current_key": "AIzaSyDC55jyAD6-vtnQTHHEdGa6dFBshdLZJhA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "480203224952-s5ehlk0a765vu7rtqpinqdgj8t7aknuc.apps.googleusercontent.com",
+              "client_id": "655553525167-rnjegv9s3m09og314126gh17rfl3vae8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

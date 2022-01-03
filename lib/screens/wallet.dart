@@ -16,11 +16,13 @@ class _WalletState extends State<Wallet> {
     return Scaffold(
       backgroundColor: card_background,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Row(
           children: <Widget>[
             IconButton(
               onPressed: () {
                 //DefaultTabController.of(context)?.animateTo(0);
+                Navigator.pop(context);
               },
               icon: Icon(Icons.arrow_back),
               color: Colors.black,

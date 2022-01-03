@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:servicezz_clone/screens/wallet.dart';
 
 class WalletBalance extends StatelessWidget {
   const WalletBalance({Key? key}) : super(key: key);
@@ -12,14 +13,10 @@ class WalletBalance extends StatelessWidget {
         title: Text("Wallet Balance"),
         subtitle: GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, '/wallet');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => Wallet()));
             },
             child: Text("Add Money")),
-        trailing: Stack(
-          children: <Widget>[
-            Text("${moneyInWallet}"),
-          ],
-        ),
+        trailing: Text("${moneyInWallet}"),
       ),
     );
   }

@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:servicezz_clone/models/drawer_list_class.dart';
+import 'package:servicezz_clone/services.dart/authentication.dart';
 
 class DrawerList extends StatefulWidget {
   @override
@@ -26,8 +29,10 @@ class _DrawerListState extends State<DrawerList> {
           padding: const EdgeInsets.fromLTRB(0.0, 4.0, 0.0, 4.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.pushReplacementNamed(context, 'drawer0');
-            },
+              if (index == 6) {
+                AuthService().signOut();
+              }
+            }, 
             child: ListTile(
               leading: Text(
                 _listOfDrawerList[index].url,

@@ -19,6 +19,7 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
         backgroundColor: navColor,
         appBar: AppBar(
+          
           backgroundColor: navColor,
           elevation: 0.0,
           title: Padding(

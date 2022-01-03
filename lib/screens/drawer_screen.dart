@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:servicezz_clone/colors.dart';
-import 'package:servicezz_clone/models/drawer_list.dart';
+import 'package:servicezz_clone/screens/drawer_list.dart';
 import 'package:servicezz_clone/screens/home_screen.dart';
 import 'package:servicezz_clone/shared/body.dart';
 

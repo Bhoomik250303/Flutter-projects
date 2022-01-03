@@ -12,3 +12,4 @@ final orangeColorBackground = Color.fromRGBO(252, 100, 2, 0.3);
 final transparent = Color.fromRGBO(255, 255, 255, 0);
 final login_orange = Color.fromRGBO(255, 231, 217, 1); //rgba(255,231,217,255)
 final otp_backgroundColor = Color.fromRGBO(157, 157, 157, 0.5);
+final buttonColorBrands = Color.fromRGBO(0, 0, 0, 0.45);
