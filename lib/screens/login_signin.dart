@@ -158,7 +158,7 @@ class _LoginState extends State<Login> {
                 onTap: () {
                   if (button_submit == true) {
                     print(phoneNumber);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                           builder: (context) => OtpScreen(
