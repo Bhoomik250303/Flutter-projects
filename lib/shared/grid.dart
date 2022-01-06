@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:servicezz_clone/colors.dart';
+import 'package:servicezz_clone/constants/class_of_brandlists.dart';
+import 'package:servicezz_clone/constants/class_of_servicelists.dart';
+import 'package:servicezz_clone/models/brands_class.dart';
+import 'package:servicezz_clone/models/services_class.dart';
+import 'package:servicezz_clone/shared/colors.dart';
 import 'package:servicezz_clone/models/electronic_image_description.dart';
-import 'package:servicezz_clone/screens/desktop_info.dart';
 
 class Grid extends StatefulWidget {
   const Grid({Key? key}) : super(key: key);
@@ -13,6 +16,8 @@ class Grid extends StatefulWidget {
 class _GridState extends State<Grid> {
   @override
   Widget build(BuildContext context) {
+    double heightScreen = MediaQuery.of(context).size.height;
+    double widthScreen = MediaQuery.of(context).size.width;
     return Container(
       color: Colors.white,
       child: GridView.count(
@@ -27,57 +32,82 @@ class _GridState extends State<Grid> {
                 imageURL: "desktop",
                 title: 'Desktop',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: ListOfBrands(
+                  brandsList: ClassOfBrandLists().desktopBrands,
+                  appliance: 'Desktop',
+                  serviceList: ClassOfServiceList().desktopServices,
+                )),
             TileModel(
                 imageURL: 'laptop',
                 title: 'Laptop',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: ListOfBrands(
+                  appliance: 'Laptop',
+                  brandsList: ClassOfBrandLists().laptopBrands,
+                  serviceList: ClassOfServiceList().laptopServices,
+                )),
             TileModel(
                 imageURL: 'cccamera',
                 title: 'Camera',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: ListOfServices(
+                  appliance: 'CCTV',
+                  serviceList: ClassOfServiceList().cctvServices,
+                )),
             TileModel(
                 imageURL: 'biometric',
-                title: 'Desktop',
+                title: 'Biometric',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: ListOfServices(
+                  appliance: 'Biometric',
+                  serviceList: ClassOfServiceList().biometricServices,
+                )),
             TileModel(
                 imageURL: 'router',
-                title: 'Desktop',
+                title: 'Router',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: ListOfServices(
+                  appliance: 'Networking Services',
+                  serviceList: ClassOfServiceList().networkServices,
+                )),
             TileModel(
-                imageURL: 'printer',
-                title: 'Desktop',
-                subtitle: 'Services',
-                details: 'desktopDetails'),
+              imageURL: 'printer',
+              title: 'Printer',
+              subtitle: 'Services',
+              details: ListOfBrands(
+                appliance: 'Printer',
+                brandsList: ClassOfBrandLists().printerBrands,
+                serviceList: ClassOfServiceList().printerServices,
+              ),
+            ),
             TileModel(
                 imageURL: 'onlinesupport',
-                title: 'Desktop',
+                title: 'Online Support',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: ListOfServices(
+                  appliance: 'Online',
+                  serviceList: ClassOfServiceList().onlineServices,
+                )),
             TileModel(
                 imageURL: 'timepass',
                 title: 'Desktop',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: Scaffold()),
             TileModel(
                 imageURL: 'shoponline',
                 title: 'Desktop',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: Scaffold()),
             TileModel(
                 imageURL: 'bulkservice',
                 title: 'Desktop',
                 subtitle: 'Services',
-                details: 'desktopDetails'),
+                details: Scaffold()),
           ].map((TileModel tile) {
             return GestureDetector(
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => GridInfo1()));
+                    MaterialPageRoute(builder: (context) => tile.details));
               },
               child: GridTile(
                 child: Padding(
