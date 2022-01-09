@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:servicezz_clone/screens/home_screen.dart';
 
-import '../colors.dart';
+import 'colors.dart';
 
 final bottomNavbar = BottomAppBar(
   elevation: 0.0,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:servicezz_clone/colors.dart';
+import 'package:servicezz_clone/shared/colors.dart';
 import 'package:servicezz_clone/screens/orders.dart';
 import 'package:servicezz_clone/screens/profile.dart';
 import 'package:servicezz_clone/shared/body.dart';
@@ -21,7 +21,7 @@ class _TabsState extends State<Tabs> {
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               color: navColor,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
             ),
             height: 88.0,
             child: TabBar(

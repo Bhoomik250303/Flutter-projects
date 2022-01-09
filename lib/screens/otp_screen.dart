@@ -5,7 +5,7 @@ import 'package:pinput/pin_put/pin_put.dart';
 import 'package:servicezz_clone/screens/loading.dart';
 import 'package:servicezz_clone/services.dart/authentication.dart';
 import 'package:servicezz_clone/shared/fragments.dart';
-import '../colors.dart';
+import '../shared/colors.dart';
 
 class OtpScreen extends StatefulWidget {
   final String phoneNumber;

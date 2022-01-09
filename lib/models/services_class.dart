@@ -4,19 +4,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:grouped_buttons/grouped_buttons.dart';
+import 'package:servicezz_clone/models/costumer_testimonial_model.dart';
 import 'package:servicezz_clone/screens/checkout_screen.dart';
 import 'package:servicezz_clone/shared/colors.dart';
 
 class ListOfServices extends StatefulWidget {
-  String? brands;
+  final String? brands;
   String appliance;
-  List<String> serviceList;
+  final List<String> serviceList;
 
   ListOfServices(
       {required this.serviceList, required this.appliance, this.brands});
   List<String> _checkedOptions = [];
 
-  ButtonStyle _buttonStyle = ButtonStyle(
+  final ButtonStyle _buttonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(buttonColorBrands),
       elevation: MaterialStateProperty.all(0.0));
 
@@ -25,48 +26,56 @@ class ListOfServices extends StatefulWidget {
 }
 
 class _ListOfServicesState extends State<ListOfServices> {
-  final List<bool> _isChecked = [false, false, false, false, false, false];
+  ScrollPhysics _toScroll = BouncingScrollPhysics();
+
+  final List<bool> _isChecked = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ];
+
   @override
   Widget build(BuildContext context) {
+    AppBar appBar = AppBar(
+      iconTheme: IconThemeData(color: Colors.black),
+      titleSpacing: 0.0,
+      elevation: 0.0,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: card_background,
+      ),
+      title: Text('${widget.appliance} Service',
+          style: TextStyle(color: Colors.black)),
+      backgroundColor: card_background,
+    );
     double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
+    // double heightStatusBarAppBar = MediaQuery.of(context).padding.top + _kToolbarHeight;
 
+    double heightBody = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
+    double heightContent = ((widget.serviceList.length) * 82) + 40;
+    print(heightContent);
+    print(heightBody);
+    if (heightContent < heightBody) {
+      setState(() {
+        _toScroll = NeverScrollableScrollPhysics();
+      });
+    }
     return Scaffold(
       backgroundColor: card_background,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        elevation: 0.0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: card_background,
-        ),
-        backgroundColor: card_background,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.black,
-                  )),
-              Text("${widget.appliance} Service",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 22,
-                  )),
-            ],
-          ),
-        ),
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
+        physics: _toScroll,
         child: Container(
             constraints: BoxConstraints(
-                maxHeight: (widget.serviceList.length + 1) * 128),
+                minHeight: heightScreen - 150, maxHeight: heightScreen - 50),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -75,21 +84,22 @@ class _ListOfServicesState extends State<ListOfServices> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, top: 16.0),
+                const Padding(
+                  padding: EdgeInsets.only(left: 16.0, top: 16.0),
                   child: Text(
-                    "Select brand for your CCTV",
+                    "Select brand for your ",
                     style:
                         TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16.0,
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16),
-                  height: heightScreen - 300,
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  height: (widget.serviceList.length) * 82,
                   child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: widget.serviceList.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
@@ -139,10 +149,10 @@ class _ListOfServicesState extends State<ListOfServices> {
               ],
             )),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-        child: BottomAppBar(
-          color: card_background,
+      bottomNavigationBar: BottomAppBar(
+        color: card_background,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: TextButton(
             style: widget._checkedOptions.isNotEmpty
                 ? widget._buttonStyle.copyWith(
@@ -165,12 +175,14 @@ class _ListOfServicesState extends State<ListOfServices> {
                 print("No Service Selected");
               } else {
                 print(widget._checkedOptions);
+                print(heightBody);
+                print(widthScreen);
                 Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => CheckoutPage(
                                 services: widget._checkedOptions,
-                                brands: [],
+                                brands: widget.brands,
                                 height: heightScreen,
                                 width: widthScreen,
                                 appliance: widget.appliance)))

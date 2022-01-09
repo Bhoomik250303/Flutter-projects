@@ -15,7 +15,7 @@ class ClassOfServiceList {
     'No Power in DVR',
     'No Power in Camera',
     'Cable Break',
-    'Others'
+    'Others',
   ];
   var biometricServices = [
     'Attendance not Store',
@@ -31,7 +31,7 @@ class ClassOfServiceList {
     'Internet not Sharing',
     'Router Configure',
     'Slow performance',
-    'Others'
+    'Others',
   ];
   var printerServices = [
     'No Power',

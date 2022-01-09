@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:servicezz_clone/colors.dart';
+import 'package:servicezz_clone/shared/colors.dart';
 
 class SubmitLoginButton extends StatefulWidget {
   bool state;

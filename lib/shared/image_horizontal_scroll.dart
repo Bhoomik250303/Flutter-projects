@@ -16,21 +16,19 @@ class _ImageScrollViewState extends State<ImageScrollView> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        physics: ScrollPhysics(),
-        itemCount: _listOfImageLink.length,
-        itemBuilder: (BuildContext context, int idx) {
-          return Container(
-            margin: EdgeInsets.fromLTRB(16.0, 8.0, 0.0, 0.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(32.0),
-            ),
-            child: Image.network(_listOfImageLink[idx]),
-          );
-        },
-      ),
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      physics: ScrollPhysics(),
+      itemCount: _listOfImageLink.length,
+      itemBuilder: (BuildContext context, int idx) {
+        return Container(
+          margin: EdgeInsets.fromLTRB(16.0, 8.0, 0.0, 0.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(32.0),
+          ),
+          child: Image.network(_listOfImageLink[idx]),
+        );
+      },
     );
   }
 }

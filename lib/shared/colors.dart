@@ -13,3 +13,6 @@ final transparent = Color.fromRGBO(255, 255, 255, 0);
 final login_orange = Color.fromRGBO(255, 231, 217, 1); //rgba(255,231,217,255)
 final otp_backgroundColor = Color.fromRGBO(157, 157, 157, 0.5);
 final buttonColorBrands = Color.fromRGBO(0, 0, 0, 0.45);
+final checkout_cream_color = Color.fromRGBO(255, 158, 0, 1);
+final yellow_checkout =
+    Color.fromRGBO(255, 232, 168, 1);//rgba(255,232,168,255)

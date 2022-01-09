@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:servicezz_clone/colors.dart';
+import 'package:servicezz_clone/shared/colors.dart';
 import 'package:servicezz_clone/screens/otp_screen.dart';
 
 class Login extends StatefulWidget {

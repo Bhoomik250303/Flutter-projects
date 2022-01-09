@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:servicezz_clone/colors.dart';
+import 'package:servicezz_clone/shared/colors.dart';
 import 'package:servicezz_clone/screens/drawer_screen.dart';
 import 'package:servicezz_clone/shared/grid.dart';
 import 'package:servicezz_clone/shared/last_container.dart';
@@ -93,7 +93,7 @@ class _BodyState extends State<Body> {
               margin: EdgeInsets.symmetric(vertical: 6.0),
               child: Center(child: ImageScrollView()),
               height: 200,
-              width: 500,
+              width: widthScreen,
             ),
             Container(
               child: Grid(),

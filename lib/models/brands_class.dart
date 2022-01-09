@@ -22,29 +22,40 @@ class ListOfBrands extends StatefulWidget {
 }
 
 class _ListOfBrandsState extends State<ListOfBrands> {
+  ScrollPhysics _toScroll = BouncingScrollPhysics();
+
   @override
   Widget build(BuildContext context) {
+    AppBar appBar = AppBar(
+      iconTheme: IconThemeData(color: Colors.black),
+      titleSpacing: 0.0,
+      elevation: 0.0,
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: card_background,
+      ),
+      backgroundColor: card_background,
+      title: Text(
+        '${widget.appliance} Brands',
+        style: TextStyle(color: Colors.black),
+      ),
+    );
     double heightScreen = MediaQuery.of(context).size.height;
-    double widthScreen = MediaQuery.of(context).size.width;
+    double heightBody = MediaQuery.of(context).size.height -
+        appBar.preferredSize.height -
+        MediaQuery.of(context).padding.top;
+
+    double heightContent = (widget.brandsList.length + 2) * 48.0;
+    if (heightContent < heightBody) {
+      setState(() {
+        _toScroll = NeverScrollableScrollPhysics();
+      });
+    }
 
     return Scaffold(
       backgroundColor: card_background,
-      appBar: AppBar(
-        elevation: 0.0,
-        systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: card_background,
-        ),
-        backgroundColor: card_background,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: Text(
-            "Brands",
-            style: TextStyle(
-                color: Colors.black, fontWeight: FontWeight.w500, fontSize: 24),
-          ),
-        ),
-      ),
+      appBar: appBar,
       body: SingleChildScrollView(
+        physics: _toScroll,
         child: Container(
             constraints: BoxConstraints(
                 minHeight: heightScreen - 150, maxHeight: heightScreen - 50),
@@ -103,10 +114,10 @@ class _ListOfBrandsState extends State<ListOfBrands> {
               ),
             )),
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-        child: BottomAppBar(
-          color: card_background,
+      bottomNavigationBar: BottomAppBar(
+        color: card_background,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: TextButton(
             style: widget._buttonStyle.copyWith(
                 elevation: MaterialStateProperty.all(0.0),
