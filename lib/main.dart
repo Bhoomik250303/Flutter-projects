@@ -31,12 +31,7 @@ class MyApp extends StatelessWidget {
       initialData: null,
       value: AuthService().userStream,
       child: MaterialApp(
-        home: CheckoutPage(
-          appliance: 'CCTV',
-          height: 614,
-          width: 662.9,
-          services: ['svsdvv', 'svvavav', 'avaevev'],
-        ),
+        home: Wrapper(),
       ),
     );
   }
