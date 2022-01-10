@@ -20,8 +20,13 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
+  List<String> services = [];
   @override
   Widget build(BuildContext context) {
+    setState(() {
+      services = widget.services;
+    });
+    double heightContent = (widget.services.length * 60) + 502;
     AppBar appBar = AppBar(
       iconTheme: IconThemeData(color: Colors.black),
       titleSpacing: 0.0,
@@ -34,13 +39,20 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
     double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
+    ScrollPhysics _toScroll = BouncingScrollPhysics();
 
+    if (heightContent < heightScreen) {
+      setState(() {
+        _toScroll = NeverScrollableScrollPhysics();
+      });
+    }
     return Scaffold(
       appBar: appBar,
       body: SingleChildScrollView(
+        physics: _toScroll,
         child: Container(
             constraints: BoxConstraints(
-                minHeight: heightScreen - 150, maxHeight: heightScreen - 10),
+                minHeight: heightScreen - 150, maxHeight: heightScreen + 100),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -70,11 +82,12 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   margin: const EdgeInsets.symmetric(horizontal: 16),
                   height: (widget.services.length) * 60,
                   child: ListView.builder(
-                    itemCount: widget.services.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: services.length,
                     itemBuilder: (context, index) {
                       return ListTile(
                         title: Text(
-                          widget.services[index],
+                          services[index],
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
@@ -208,6 +221,42 @@ class _CheckoutPageState extends State<CheckoutPage> {
                 )
               ],
             )),
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(16.0), topRight: Radius.circular(16.0)),
+          color: navColor,
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+          child: ListTile(
+              leading: Text(
+                "Total: Rs 750",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w800,
+                    letterSpacing: 0.9),
+              ),
+              trailing: GestureDetector(
+                onTap: () {},
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                  child: Container(
+                    color: orangeColor,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 16.0),
+                      child: Text(
+                        "Proceed",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ),
+                ),
+              )),
+        ),
       ),
     );
   }

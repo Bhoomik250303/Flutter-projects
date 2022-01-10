@@ -21,7 +21,7 @@ class _TabsState extends State<Tabs> {
           bottomNavigationBar: Container(
             decoration: BoxDecoration(
               color: navColor,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(32.0)),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
             ),
             height: 88.0,
             child: TabBar(

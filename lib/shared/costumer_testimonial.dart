@@ -49,7 +49,7 @@ class _CostumerTestimonialsState extends State<CostumerTestimonials> {
       child: Container(
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          physics: ScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           itemCount: _listOfTestimonial.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(

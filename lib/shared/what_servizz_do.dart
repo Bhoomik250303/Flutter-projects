@@ -28,7 +28,7 @@ class _AboutState extends State<About> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-          physics: ScrollPhysics(),
+          physics: NeverScrollableScrollPhysics(),
           itemCount: 4,
           itemBuilder: (BuildContext context, int index) {
             return ListTile(

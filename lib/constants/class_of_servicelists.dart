@@ -48,6 +48,7 @@ class ClassOfServiceList {
     'Printer setup',
     'Router Configuration',
     'PC sharing issue',
-    'Networking support'
+    'Networking support',
+    'Others'
   ];
 }
