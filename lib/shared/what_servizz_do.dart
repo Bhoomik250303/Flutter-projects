@@ -25,6 +25,7 @@ class _AboutState extends State<About> {
         title: "Software", subtitle: "We promote only liscensed software."),
   ];
   @override
+  
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
