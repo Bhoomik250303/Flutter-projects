@@ -31,7 +31,7 @@ class _ListOfBrandsState extends State<ListOfBrands> {
       titleSpacing: 0.0,
       elevation: 0.0,
       systemOverlayStyle: SystemUiOverlayStyle(
-        statusBarColor: card_background,
+        statusBarColor: navColor,
       ),
       backgroundColor: card_background,
       title: Text(

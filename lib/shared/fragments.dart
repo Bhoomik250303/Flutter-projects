@@ -25,6 +25,8 @@ class _TabsState extends State<Tabs> {
             ),
             height: 88.0,
             child: TabBar(
+              indicator: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(16.0))),
               tabs: [
                 Stack(
                   children: <Widget>[
