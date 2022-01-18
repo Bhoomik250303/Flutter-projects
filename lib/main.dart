@@ -2,12 +2,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:servicezz_clone/screens/checkout_screen.dart';
 import 'package:servicezz_clone/shared/colors.dart';
 import 'package:servicezz_clone/models/userData.dart';
 import 'package:servicezz_clone/services.dart/authentication.dart';
-import 'package:servicezz_clone/shared/grid.dart';
-import 'package:servicezz_clone/testingList.dart';
 import 'package:servicezz_clone/wrapper.dart';
 
 // Error at Desktop, Laptop, Online.

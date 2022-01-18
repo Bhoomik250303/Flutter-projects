@@ -47,6 +47,8 @@ dependencies:
   razorpay_flutter: ^1.2.3
   google_fonts: ^2.2.0
   intl: ^0.17.0
+  jiffy: ^5.0.0
+  syncfusion_flutter_datepicker: ^19.4.42
 
 dev_dependencies:
   flutter_test:

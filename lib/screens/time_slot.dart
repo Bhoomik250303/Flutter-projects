@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:servicezz_clone/models/time_container.dart';
+import 'package:servicezz_clone/screens/address_screen_aftercheckout.dart';
 import 'package:servicezz_clone/shared/colors.dart';
-import 'package:intl/intl.dart';
 
 class TimeSlot extends StatefulWidget {
   TimeSlot({Key? key}) : super(key: key);
@@ -9,29 +10,28 @@ class TimeSlot extends StatefulWidget {
   final ButtonStyle _buttonStyle = ButtonStyle(
       backgroundColor: MaterialStateProperty.all(buttonColorBrands),
       elevation: MaterialStateProperty.all(0.0));
+
   @override
   _TimeSlotState createState() => _TimeSlotState();
 }
 
 class _TimeSlotState extends State<TimeSlot> {
   String future = 'Future';
-  List<String> services = [];
-  List<String> timings = [
-    '09.00 am',
-    '10.00 am',
-    '11.00 am',
-    '12.00 am',
-    '01.00 pm',
-    '02.00 pm',
-    '03.00 pm',
-    '04.00 pm',
-    '05.00 pm',
-    '06.00 pm',
-    '07.00 pm',
-    '08.00 pm'
-  ];
 
-  // DateTime now = DateTime.now();
+  List<TimingClass> timings = [
+    TimingClass(time: '09:00 am', diffFromNow: "", timeInHour: "09"),
+    TimingClass(time: '10:00 am', diffFromNow: "", timeInHour: "10"),
+    TimingClass(time: '11:00 am', diffFromNow: "", timeInHour: "11"),
+    TimingClass(time: '12:00 am', diffFromNow: "", timeInHour: "12"),
+    TimingClass(time: '01:00 pm', diffFromNow: "", timeInHour: "13"),
+    TimingClass(time: '02:00 pm', diffFromNow: "", timeInHour: "14"),
+    TimingClass(time: '03:00 pm', diffFromNow: "", timeInHour: "15"),
+    TimingClass(time: '04:00 pm', diffFromNow: "", timeInHour: "16"),
+    TimingClass(time: '05:00 pm', diffFromNow: "", timeInHour: "17"),
+    TimingClass(time: '06:00 pm', diffFromNow: "", timeInHour: "18"),
+    TimingClass(time: '07:00 pm', diffFromNow: "", timeInHour: "19"),
+    TimingClass(time: '08:00 pm', diffFromNow: "", timeInHour: "20"),
+  ];
 
   List _isTapped = [
     false,
@@ -47,10 +47,30 @@ class _TimeSlotState extends State<TimeSlot> {
     false,
     false,
   ];
+
+  String _daySelection = "";
+  String? _timeSelected;
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime.now(),
+        lastDate: DateTime(2023));
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+        future =
+            "${picked.toString().substring(8, 10)} - ${picked.toString().substring(5, 7)}";
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
-    var nowNew = DateFormat('hh:mm a').format(DateTime.now());
-    print('hour :- ${nowNew}');
+    DateTime now = DateTime.now();
+    int nowInt = int.parse(now.toString().substring(11, 13));
+
     AppBar appBar = AppBar(
       iconTheme: const IconThemeData(color: Colors.black),
       titleSpacing: 0.0,
@@ -64,7 +84,7 @@ class _TimeSlotState extends State<TimeSlot> {
     );
     double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
-    ScrollPhysics _toScroll = BouncingScrollPhysics();
+    ScrollPhysics _toScroll = const BouncingScrollPhysics();
 
     return Scaffold(
       appBar: appBar,
@@ -91,63 +111,94 @@ class _TimeSlotState extends State<TimeSlot> {
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1.0,
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _daySelection = "Today";
+                    }),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: _daySelection == "Today"
+                            ? orangeColorBackground
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                          color: _daySelection == "Today"
+                              ? Colors.transparent
+                              : Colors.grey,
+                          width: 1.0,
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 32.0, vertical: 12.0),
-                      child: const Text(
-                        'Today',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 32.0, vertical: 12.0),
+                        child: Text(
+                          'Today',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: _daySelection == "Today"
+                                ? orangeColor
+                                : Colors.black,
+                          ),
                         ),
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1.0,
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _daySelection = "Tomorrow";
+                    }),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: _daySelection == "Tomorrow"
+                            ? orangeColorBackground
+                            : transparent,
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                          color: _daySelection == "Tomorrow"
+                              ? transparent
+                              : Colors.grey,
+                          width: 1.0,
+                        ),
                       ),
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: 32.0, vertical: 12.0),
-                      child: Text(
-                        'Tomorrow',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 32.0, vertical: 12.0),
+                        child: Text(
+                          'Tomorrow',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: _daySelection == "Tomorrow"
+                                  ? orangeColor
+                                  : Colors.black),
                         ),
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1.0,
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _daySelection = future;
+                      _selectDate(context);
+                    }),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(
+                          color: Colors.grey,
+                          width: 1.0,
+                        ),
                       ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 32.0,
-                        vertical: 12.0,
-                      ),
-                      child: Text(
-                        future,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 32.0,
+                          vertical: 12.0,
+                        ),
+                        child: Text(
+                          future,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                     ),
@@ -183,14 +234,25 @@ class _TimeSlotState extends State<TimeSlot> {
                           _isTapped[index] = !_isTapped[index];
                         } else {
                           _isTapped[index] = !_isTapped[index];
+                          _timeSelected = "";
                         }
+
+                        _isTapped[index]
+                            ? _timeSelected = timings[index].time
+                            : null;
                       }),
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12.0),
-                          color: _isTapped[index]
-                              ? orangeColorBackground
-                              : Colors.transparent,
+                          color: _daySelection == "Today"
+                              ? int.parse(timings[index].timeInHour) > nowInt
+                                  ? _isTapped[index]
+                                      ? orangeColorBackground
+                                      : Colors.transparent
+                                  : grey_light
+                              : _isTapped[index]
+                                  ? orangeColorBackground
+                                  : Colors.transparent,
                           border: Border.all(
                             color: _isTapped[index]
                                 ? Colors.transparent
@@ -200,11 +262,17 @@ class _TimeSlotState extends State<TimeSlot> {
                         ),
                         child: Center(
                           child: Text(
-                            timings[index],
+                            timings[index].time,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               color:
-                                  _isTapped[index] ? orangeColor : Colors.black,
+                                  int.parse(timings[index].timeInHour) > nowInt
+                                      ? _isTapped[index]
+                                          ? orangeColor
+                                          : Colors.black
+                                      : _isTapped[index]
+                                          ? orangeColor
+                                          : Colors.black,
                             ),
                           ),
                         ),
@@ -222,29 +290,27 @@ class _TimeSlotState extends State<TimeSlot> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: TextButton(
-              style: widget._buttonStyle, //Condition to be coded next.
-              // style: _checkedOptions.isNotEmpty
-              //     ? widget._buttonStyle.copyWith(
-              //         backgroundColor: MaterialStateProperty.all(Colors.black),
-              //         elevation: MaterialStateProperty.all(0.0),
-              //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              //             RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(12.0))))
-              //     : widget._buttonStyle.copyWith(
-              //         elevation: MaterialStateProperty.all(0.0),
-              //         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              //             RoundedRectangleBorder(
-              //                 borderRadius: BorderRadius.circular(12.0)))),
+              style: _timeSelected != null
+                  ? widget._buttonStyle.copyWith(
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
+                      elevation: MaterialStateProperty.all(0.0),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0))))
+                  : widget._buttonStyle.copyWith(
+                      elevation: MaterialStateProperty.all(0.0),
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0)))),
               child: const Text(
                 "Proceed",
                 style: TextStyle(color: Colors.white),
               ),
               onPressed: () {
-                
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //         builder: (BuildContext context) => Container()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => AddressAfterCheckout()));
               }),
         ),
       ),
