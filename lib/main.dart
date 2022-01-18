@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:servicezz_clone/screens/payment_screen.dart';
 import 'package:servicezz_clone/shared/colors.dart';
 import 'package:servicezz_clone/models/userData.dart';
 import 'package:servicezz_clone/services.dart/authentication.dart';
@@ -22,8 +23,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setPreferredOrientations(
-    //     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
     return StreamProvider<UserData?>.value(
       initialData: null,
       value: AuthService().userStream,
